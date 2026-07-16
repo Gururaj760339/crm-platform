@@ -31,6 +31,16 @@ class AuthController extends BaseController
         ]);
     }
 
+    public function userLogOut(Request $request){
+        try{
+            $request->user()->currentAccessToken()->delete();
+
+            return $this->successMessage(true, 'Logout Successfully', null);
+        }catch(\Exception $e){
+            return $this->errorMessage(false, $e->getMessage());
+        }
+    }
+
     public function registerUser(Request $request)
     {
         $request->validate([

@@ -10,5 +10,6 @@ use App\Http\Controllers\RoleController;
 // })->middleware('auth:sanctum');
 
 Route::post('/login-user', [AuthController::class, 'userLogin']);
+Route::post('/logout-user', [AuthController::class, 'userLogOut'])->middleware('auth:sanctum');
 Route::post('/register-user', [AuthController::class, 'registerUser'])->middleware('auth:sanctum');
 Route::post('/create-role', [RoleController::class, 'registerUserRole'])->middleware('auth:sanctum');
