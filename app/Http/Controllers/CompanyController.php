@@ -63,6 +63,7 @@ class CompanyController extends BaseController
         }
     }
 
+
     public function companyUpdate(Request $request, $companyId)
     {
         $request->validate([
@@ -199,6 +200,15 @@ class CompanyController extends BaseController
         try{
             Contact::destroy($contactId);
             return $this->successMessage(true, 'Contact Delete Successfully', null);
+        }catch(\Exception $e){
+            return $this->errorMessage(false, $e->getMessage());
+        }
+    }
+
+    public function singleCompanyContact($companyId){
+        try{
+            $singleCompanyContact = Company::with('contacts')->where('id', $companyId)->get();
+            return $this->successMessage(true, 'Single Company Contact Retrieve Successfully', $singleCompanyContact);
         }catch(\Exception $e){
             return $this->errorMessage(false, $e->getMessage());
         }
