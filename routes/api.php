@@ -27,6 +27,8 @@ Route::get('/company/{id}', [CompanyController::class, 'singleCompanyShow'])->mi
 Route::post('/company/update/{id}', [CompanyController::class, 'companyUpdate'])->middleware('auth:sanctum');
 Route::delete('/company/delete/{id}', [CompanyController::class, 'deleteCompany'])->middleware('auth:sanctum');
 Route::post('/add-company/contact', [CompanyController::class, 'addCompanyContact'])->middleware('auth:sanctum');
+Route::get('/company/all/contacts', [CompanyController::class, 'showAllCompanyContact'])->middleware('auth:sanctum');
+Route::get('/company/single/contacts/{id}', [CompanyController::class, 'showSingleCompanyContact'])->middleware('auth:sanctum');
 
 
 

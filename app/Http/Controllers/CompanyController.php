@@ -140,4 +140,22 @@ class CompanyController extends BaseController
             return $this->errorMessage(false, $e->getMessage());
         }
     }
+
+    public function showAllCompanyContact(){
+        try {
+            $companyContact = Contact::get();
+            return $this->successMessage(true, 'Company All Contact Retrieve Successfully', $companyContact);
+        }catch(\Exception $e){
+            return $this->errorMessage(false, $e->getMessage());
+        }
+    }
+
+    public function showSingleCompanyContact($contactId){
+        try {
+            $companyContact = Contact::where('id', $contactId)->get();
+            return $this->successMessage(true, 'Company Single Contact Retrieve Successfully', $companyContact);
+        }catch(\Exception $e){
+            return $this->errorMessage(false, $e->getMessage());
+        }
+    }
 }
