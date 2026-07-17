@@ -141,19 +141,64 @@ class CompanyController extends BaseController
         }
     }
 
-    public function showAllCompanyContact(){
+    public function showAllCompanyContact()
+    {
         try {
             $companyContact = Contact::get();
             return $this->successMessage(true, 'Company All Contact Retrieve Successfully', $companyContact);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return $this->errorMessage(false, $e->getMessage());
         }
     }
 
-    public function showSingleCompanyContact($contactId){
+    public function showSingleCompanyContact($contactId)
+    {
         try {
             $companyContact = Contact::where('id', $contactId)->get();
             return $this->successMessage(true, 'Company Single Contact Retrieve Successfully', $companyContact);
+        } catch (\Exception $e) {
+            return $this->errorMessage(false, $e->getMessage());
+        }
+    }
+
+
+    public function updateCompanyContact(Request $request, $companyId)
+    {
+        $request->validate([
+            'company_id' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'job_title' => 'required',
+            'address' => 'required',
+            'owner_id' => 'required',
+            'source' => 'required'
+        ]);
+
+        try {
+            Contact::where('id', $companyId)->update([
+                'company_id' => $request->company_id,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'job_title' => $request->job_title,
+                'address' => $request->address,
+                'owner_id' => $request->owner_id,
+                'source' => $request->source
+            ]);
+
+            return $this->successMessage(true, 'Company Contact Update Successfully', null);
+        } catch (\Exception $e) {
+            return $this->errorMessage(false, $e->getMessage());
+        }
+    }
+
+    public function deleteCompanyContact($contactId){
+        try{
+            Contact::destroy($contactId);
+            return $this->successMessage(true, 'Contact Delete Successfully', null);
         }catch(\Exception $e){
             return $this->errorMessage(false, $e->getMessage());
         }
