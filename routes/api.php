@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompanyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
@@ -19,6 +20,11 @@ Route::get('/single-users/{id}', [UserController::class, 'singleUser'])->middlew
 Route::post('/register-user', [UserController::class, 'registerUser'])->middleware('auth:sanctum');
 Route::post('/update-user/{id}', [UserController::class, 'updateUser'])->middleware('auth:sanctum');
 Route::delete('/delete-user/{id}', [UserController::class, 'userDelete'])->middleware('auth:sanctum');
+
+Route::post('/add-company', [CompanyController::class, 'addCompany'])->middleware('auth:sanctum');
+Route::get('/companyes', [CompanyController::class, 'allCompanyShow'])->middleware('auth:sanctum');
+Route::get('/company/{id}', [CompanyController::class, 'singleCompanyShow'])->middleware('auth:sanctum');
+Route::post('/company/update/{id}', [CompanyController::class, 'companyUpdate'])->middleware('auth:sanctum');
 
 
 

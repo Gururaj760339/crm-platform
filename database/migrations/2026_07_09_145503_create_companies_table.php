@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('country');
-            $table->decimal('annual_revenue');
+            $table->decimal('annual_revenue', 15, 2);
             $table->integer('employee_count');
             $table->unsignedBigInteger('owner_id');
             $table->timestamps();
