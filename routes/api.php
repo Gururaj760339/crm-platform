@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 
 // Route::get('/user', function (Request $request) {
@@ -34,5 +35,6 @@ Route::post('/company/update/contacts/{id}', [CompanyController::class, 'updateC
 Route::delete('/company/delete/contacts/{id}', [CompanyController::class, 'deleteCompanyContact'])->middleware('auth:sanctum');
 Route::get('/company/{id}/contacts', [CompanyController::class, 'singleCompanyContact'])->middleware('auth:sanctum');
 
+Route::post('/add/team-member', [TeamController::class, 'addTeamMembar'])->middleware('auth:sanctum');
 
 
